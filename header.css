@@ -1,0 +1,152 @@
+/* Header Styling */
+header {
+    padding: 20px; /* Keep your existing padding */
+    position: fixed; /* Change to fixed position */
+    top: 0; /* Position it at the top */
+    left: 0; /* Align to the left */
+    right: 0; /* Align to the right */
+    width: 100%; /* Ensure full width */
+    overflow: hidden; /* Maintain overflow settings */
+    border-radius: 60px; /* Remove border radius to prevent odd clipping */
+    z-index: 1000; /* Ensure it is above other content */
+    height: 100px;
+}
+
+/* Flexbox for Header Content */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%; /* Prevent overflow */
+    padding: 0 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* Logo Styling */
+.logo img {
+    width: 100px;
+    max-width: 100%; 
+}
+
+/* Cart Info Styling */
+.cart-info {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+/* Navigation List (Desktop) */
+.nav-list {
+    display: flex;
+    list-style: none;
+    overflow: hidden;
+    justify-content: center; /* Centers the navigation horizontally */
+    align-items: center; /* Aligns items vertically */
+    left: 80%;
+    transform: translateX(-50%); /* Centers the navigation horizontally on the page */
+    overflow: hidden;
+    position: absolute; /* Positions the navigation at the top */
+    background: rgb(230, 3, 90); /* Chocolate gradient */
+    width: 20%; /* Ensure full width */
+    height: 50%;
+    border-radius: 50px;
+    top: 20px;
+}
+.nav-list li {
+    margin: 0 20px;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem;
+}
+.nav-list li a:hover {
+    color: #6d524d;
+}
+
+/* Hamburger Icon Styling */
+.hamburger {
+    display: none; /* Hide hamburger on desktop */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    position: relative;
+    z-index: 100;
+}
+.hamburger .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #999898;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger Icon Animation when Active */
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Navigation Menu */
+.mobile-nav {
+    display: none;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0px;
+    left: 0;
+    width: 100vw; /* Make sure it takes the full viewport width */
+    text-align: center;
+    padding: 30px 0;
+    transform: translateY(-100%);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    z-index: 11;
+}
+.mobile-nav.show {
+    transform: translateY(0); /* Slide down */
+    opacity: 1;
+}
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.mobile-nav ul li {
+    margin: 20px 0;
+}
+.mobile-nav ul li a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 1.2rem;
+}
+.mobile-nav ul li a:hover {
+    color: #58322b;
+}
+
+/* Media Queries for Mobile */
+@media (max-width: 768px) {
+    .nav-list {
+        display: none; /* Hide desktop nav on mobile */
+    }
+
+    .hamburger {
+        display: flex; /* Show hamburger icon on mobile */
+    }
+
+    .mobile-nav {
+        position: fixed; /* Make sure it's fixed for full width */
+        width: 100vw; /* Full viewport width */
+    }
+}
+
+

@@ -1,0 +1,24 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%; /* Prevent horizontal overflow */
+    height: 100%; /* Ensure the height is limited to the viewport */
+    overflow: hidden; /* Disable scrolling */
+    font-family: Arial, sans-serif;
+}
+
+/* Ensure the flex container behaves as expected */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, #d60059, #2c0d1a);
+}
+
+
+

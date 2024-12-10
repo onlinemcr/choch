@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Chochies</title>
+    <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="swipper.css">
+    <link rel="stylesheet" href="top-cart.css">
+    <link rel="stylesheet" href="typing-texts.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="quote.css">
+    <link rel="stylesheet" href="btn-more.css">
+    <link rel="stylesheet" href="popup-pages.css">
+    <link rel="stylesheet" href="more-popup-pages.css">
+    <link rel="stylesheet" href="cart.css">
+
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="../images/logo.png" alt="Mr Chochies">
+            </div>
+
+            <!-- Navigation Links (desktop) -->
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="#find-us">Find Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div id="cart-container">
+                <button id="cart-button">
+                    <span id="total-amount">R0.00</span>
+                    <div id="cart-icon-container">
+                        <img src="images/shopping-bag.svg" alt="Shopping Cart" width="30">
+                        <span id="cart-counter">0</span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Hamburger Menu Icon -->
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-nav" id="mobile-nav">
+            <ul>
+                <li><a href="#find-us">Find Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
+    </header>
+
+    <div id="page-overlay"></div> <!-- Overlay -->
+    <div id="cart-modal" class="cart-modal">
+        <h2>Your Cart</h2>
+        <div id="cart-items-container">
+            <!-- Items will be dynamically inserted here -->
+        </div>
+        <div class="cart-total">
+            <p>Total Amount: <span id="cart-total-amount">R0.00</span></p>
+        </div>
+        <div class="modal-footer">
+            <button class="close-btn" onclick="closeCartModal()">X</button>
+            <button class="proceed-btn">Place Order</button>
+            <button class="google-login-btn">
+                <img src="images/google.png" alt="Google Login" />
+            </button>
+        </div>
+    </div>
+
+    <div id="typing-text-container">
+        <span id="typing-text"></span>
+    </div>
+
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" onclick="openPopup('ice-cream-popup-1')">
+                <img src="images/01.jpg" alt="Image 1">
+                <div class="label">Cup Ice Cream</div>
+            </div>
+            <div class="swiper-slide" onclick="openPopup('ice-cream-popup-2')">
+                <img src="images/02.jpg" alt="Image 2">
+                <div class="label">Cone Ice Cream</div>
+            </div>
+            <div class="swiper-slide" onclick="openPopup('ice-cream-popup-3')">
+                <img src="images/03.jpg" alt="Image 3">
+                <div class="label">Popsicle Ice Cream</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="balloon-container"></div>
+
+    <div class="button-container">
+        <button class="trigger-button" id="openCandyCupPopup">
+            <img src="/images/candy-cup-01.png" alt="Candy Cup">
+        </button>
+        <button class="trigger-button" id="openPopcornPopup">
+            <img src="/images/popcorn-02.png" alt="Popcorn">
+        </button>
+        <button class="trigger-button" id="openSweetCakePopup">
+            <img src="/images/cake-03.png" alt="Sweet Cake">
+        </button>
+        <button class="trigger-button" id="openMilkShakePopup">
+            <img src="/images/Empty.png" alt="Milkshake">
+        </button>
+    </div>
+
+    <!-- Close button (remains the same) -->
+<button class="close-all-button" id="closeAllPopups">Close</button>
+
+<!-- Overlay -->
+<div id="popupOverlay" class="overlay"></div>
+
+<!-- Custom Popups -->
+<div class="custom-popup" id="popupCandyCup">
+    <h3>Candy Cup</h3>
+    <img src="/images/candy-cup.png" alt="Candy Cup">
+    <p>Cost: R5</p>
+    <button>Add to Cart</button>
+</div>
+
+<div class="custom-popup" id="popupPopcorn">
+    <h3>Popcorn</h3>
+    <img src="/images/popcorn.png" alt="Popcorn">
+    <p>Cost: R3</p>
+    <button>Add to Cart</button>
+</div>
+
+<div class="custom-popup" id="popupSweetCake">
+    <h3>Sweet Cake</h3>
+    <img src="/images/cake-png.png" alt="Sweet Cake">
+    <p>Cost: R7</p>
+    <button>Add to Cart</button>
+</div>
+
+<div class="custom-popup" id="popupMilkShake">
+    <h3>Milk Shake</h3>
+    <img src="/images/Empty.png" alt="Milk Shake">
+    <p>Cost: R6</p>
+    <button>Add to Cart</button>
+</div>
+
+
+<!-- Background Overlay -->
+<div id="background-overlay" class="overlay" onclick="closeAllPopups()"></div>
+
+    <!-- Ice Cream 1 Popup -->
+    <div id="ice-cream-popup-1" class="popup">
+        <button class="close-btn" onclick="closePopup('ice-cream-popup-1')">X</button>
+        <div class="ice-cream-cup">
+            <img id="ice-cream-cup-img-1" src="images/cup-main.png" alt="Empty Ice Cream Cup">
+        </div>
+        <div class="flavors">
+            <button onclick="selectFlavor('chocolate', '1')" class="flavor-btn">Chocolate</button>
+            <button onclick="selectFlavor('vanilla', '1')" class="flavor-btn">Vanilla</button>
+            <button onclick="selectFlavor('strawberry', '1')" class="flavor-btn">Strawberry</button>
+        </div>
+        <div class="toppings">
+            <button onclick="toggleTopping(1, '1')" class="topping-btn">Topping 1</button>
+            <button onclick="toggleTopping(2, '1')" class="topping-btn">Topping 2</button>
+            <button onclick="toggleTopping(3, '1')" class="topping-btn">Topping 3</button>
+            <button onclick="toggleTopping(4, '1')" class="topping-btn">Topping 4</button>
+            <button onclick="toggleTopping(5, '1')" class="topping-btn">Topping 5</button>
+            <button onclick="toggleTopping(6, '1')" class="topping-btn">Topping 6</button>
+            <button onclick="toggleTopping(7, '1')" class="topping-btn">Topping 7</button>
+            <button onclick="toggleTopping(8, '1')" class="topping-btn">Topping 8</button>
+            <button onclick="toggleTopping(9, '1')" class="topping-btn">Topping 9</button>
+        </div>
+        <button class="add-to-cart-btn" data-popup-id="1" onclick="addToCart('1')">Add to Cart</button>
+    </div>
+
+    <!-- Ice Cream 2 Popup -->
+    <div id="ice-cream-popup-2" class="popup">
+        <button class="close-btn" onclick="closePopup('ice-cream-popup-2')">X</button>
+        <div class="ice-cream-cup">
+            <img id="ice-cream-cup-img-2" src="images/cup-main-3.png" alt="Empty Ice Cream Cup">
+        </div>
+        <div class="flavors">
+            <button onclick="selectFlavor('vanillachocolate', '2')" class="flavor-btn">vanilla and chocolate</button>
+            <button onclick="selectFlavor('Neapolitan', '2')" class="flavor-btn">Neapolitan</button>
+        </div>
+        <div class="toppings">
+            <button onclick="toggleTopping(2, '2')" class="topping-btn">Topping 1</button>
+            <button onclick="toggleTopping(6, '2')" class="topping-btn">Topping 2</button>
+            <button onclick="toggleTopping(7, '2')" class="topping-btn">Topping 3</button>
+        </div>
+        <button class="add-to-cart-btn" data-popup-id="2" onclick="addToCart('2')">Add to Cart</button>
+    </div>
+
+    <!-- Ice Cream 3 Popup remains the same -->
+    <div id="ice-cream-popup-3" class="popup">
+        <button class="close-btn" onclick="closePopup('ice-cream-popup-3')">X</button>
+        <div class="ice-cream-cup">
+            <img id="ice-cream-cup-img-3" src="images/cup-mian-2.png" alt="Empty Ice Cream Cup">
+        </div>
+        <div class="flavors">
+            <button onclick="selectFlavor('white', '3')" class="flavor-btn">White Almond</button>
+            <button onclick="selectFlavor('ruby', '3')" class="flavor-btn">Ruby Chocolate</button>
+            <button onclick="selectFlavor('therapy', '3')" class="flavor-btn">Chocolate Therapy</button>
+        </div>
+        <div class="toppings">
+            <button onclick="toggleTopping(11, '3')" class="topping-btn">Topping 1</button>
+            <button onclick="toggleTopping(12, '3')" class="topping-btn">Topping 2</button>
+            <button onclick="toggleTopping(13, '3')" class="topping-btn">Topping 3</button>
+            <button onclick="toggleTopping(14, '3')" class="topping-btn">Topping 4</button>
+        </div>
+        <button class="add-to-cart-btn" data-popup-id="3" onclick="addToCart('3')">Add to Cart</button>
+    </div>
+    
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+    // Open Cart Modal
+    document.getElementById("cart-button").addEventListener("click", () => {
+    document.getElementById("cart-modal").classList.add("show");
+    document.getElementById("page-overlay").classList.add("show");
+    renderCartItems(); // Your existing function to render cart items
+});
+    // Close Cart Modal
+    function closeCartModal() {
+    document.getElementById("cart-modal").classList.remove("show");
+    document.getElementById("page-overlay").classList.remove("show");
+}
+    </script>
+
+    <script>
+    // Toggle mobile navigation and animate hamburger icon
+    document.getElementById('hamburger').addEventListener('click', function() {
+    const mobileNav = document.getElementById('mobile-nav');
+    const hamburger = document.getElementById('hamburger');
+    
+    // Toggle the hamburger icon animation
+    hamburger.classList.toggle('active');
+    
+    // Toggle mobile navigation visibility with animation
+    if (mobileNav.classList.contains('show')) {
+        mobileNav.classList.remove('show');
+        setTimeout(() => {
+            mobileNav.style.display = 'none';
+        }, 500); 
+    } else {
+        mobileNav.style.display = 'block';
+        setTimeout(() => {
+            mobileNav.classList.add('show');
+        }, 10); 
+    }
+});
+    </script>
+
+    <!--FUNCTIONS HERE -->
+    <script>
+        // Open the popup and show the background overlay
+        function openPopup(popupId) {
+            // Show the popup
+            document.getElementById(popupId).style.display = 'block';
+    
+            // Show the background overlay
+            const overlay = document.getElementById('background-overlay');
+            overlay.classList.add('visible');
+        }
+    
+        // Close the popup and hide the background overlay
+        function closePopup(popupId) {
+            // Hide the popup
+            document.getElementById(popupId).style.display = 'none';
+    
+            // Hide the background overlay
+            const overlay = document.getElementById('background-overlay');
+            overlay.classList.remove('visible');
+    
+            // Reset selections inside the popup
+            resetSelections(popupId);
+        }
+    
+        // Close all popups and hide the overlay when clicking on the overlay
+        function closeAllPopups() {
+            document.querySelectorAll('.popup').forEach(popup => {
+                popup.style.display = 'none';
+            });
+    
+            const overlay = document.getElementById('background-overlay');
+            overlay.classList.remove('visible');
+        }
+    
+        // Reset flavor and topping selections when closing a popup
+        function resetSelections(popupId) {
+    const defaultImage = document.querySelector(`#${popupId} .ice-cream-cup img`).getAttribute('src');
+    const cup = document.querySelector(`#${popupId} .ice-cream-cup`);
+    cup.innerHTML = `<img src="${defaultImage}" alt="Empty Ice Cream Cup">`;
+    
+    document.querySelectorAll(`#${popupId} .topping-btn`).forEach(btn => btn.classList.remove('selected'));
+    document.querySelectorAll(`#${popupId} .topping-btn`).forEach(btn => btn.style.display = 'none');
+}
+
+    </script>
+    
+    <script>
+        // Flavor and Topping Costs Data
+        const flavorCosts = {
+            "ice-cream-1": { chocolate: 12.00, vanilla: 10.00, strawberry: 15.00 },
+            "ice-cream-2": { vanillachocolate: 12.00, Neapolitan: 10.00 },
+            "ice-cream-3": { white: 14.00, ruby: 13.00, therapy: 16.00 }
+        };
+    
+        const toppingCosts = {
+            "ice-cream-1": {
+                topping1: 2.00, topping2: 3.00, topping3: 4.00,
+                topping4: 2.50, topping5: 3.50, topping6: 1.75,
+                topping7: 2.25, topping8: 1.25, topping9: 2.75
+            },
+            "ice-cream-2": { topping1: 1.50, topping2: 2.50, topping3: 3.00 },
+            "ice-cream-3": { topping1: 3.00, topping2: 4.00, topping3: 5.00, topping4: 3.50 }
+        };
+    
+        const toppingNames = {
+            "ice-cream-1": {
+                topping1: "Sprinkles",
+                topping2: "Chocolate Chips",
+                topping3: "Caramel Drizzle",
+                topping4: "Whipped Cream",
+                topping5: "Strawberries",
+                topping6: "Nuts",
+                topping7: "Cherries",
+                topping8: "Cookie Crumbles",
+                topping9: "Marshmallows"
+            },
+            "ice-cream-2": {
+                topping1: "Honey",
+                topping2: "Granola",
+                topping3: "Blueberry Sauce"
+            },
+            "ice-cream-3": {
+                topping1: "Chocolate Syrup",
+                topping2: "Peanut Butter",
+                topping3: "Crushed Biscuits",
+                topping4: "Mint Leaves"
+            }
+        };
+    
+        let cartCount = 0;
+        let currentFlavorCost = 0;
+        let currentToppingCost = 0;
+        let cartItems = [];
+    
+        // Initialize total amount on page load
+        updateTotalAmount();
+    
+        // Flavor Selection
+        function selectFlavor(flavor, popupId) {
+            resetSelections(`ice-cream-popup-${popupId}`);
+            
+            if (flavorCosts[`ice-cream-${popupId}`] && flavorCosts[`ice-cream-${popupId}`][flavor]) {
+                currentFlavorCost = flavorCosts[`ice-cream-${popupId}`][flavor];
+                localStorage.setItem("currentFlavorCost", currentFlavorCost);
+            } else {
+                currentFlavorCost = 0;
+            }
+            updateTotalAmount();
+    
+            const flavorImage = document.createElement('img');
+            flavorImage.src = `images/${flavor}-flavor.png`;
+            flavorImage.classList.add('flavor-image');
+            document.querySelector(`#ice-cream-popup-${popupId} .ice-cream-cup`).appendChild(flavorImage);
+    
+            document.querySelectorAll(`#ice-cream-popup-${popupId} .topping-btn`).forEach(btn => btn.style.display = 'inline-block');
+        }
+    
+        // Topping Selection Toggle
+        function toggleTopping(toppingNumber, popupId) {
+            const toppingId = `topping-${popupId}-${toppingNumber}`;
+            let toppingImage = document.getElementById(toppingId);
+    
+            const toppingCost = toppingCosts[`ice-cream-${popupId}`][`topping${toppingNumber}`] || 0;
+    
+            if (toppingImage) {
+                toppingImage.remove();
+                document.querySelector(`#ice-cream-popup-${popupId} .topping-btn:nth-child(${toppingNumber})`).classList.remove('selected');
+                currentToppingCost -= toppingCost;
+            } else {
+                toppingImage = document.createElement('img');
+                toppingImage.src = `images/topping-${toppingNumber}.png`;
+                toppingImage.id = toppingId;
+                toppingImage.classList.add('topping-image');
+                toppingImage.style.zIndex = toppingNumber + 10;
+                document.querySelector(`#ice-cream-popup-${popupId} .ice-cream-cup`).appendChild(toppingImage);
+                document.querySelector(`#ice-cream-popup-${popupId} .topping-btn:nth-child(${toppingNumber})`).classList.add('selected');
+                currentToppingCost += toppingCost;
+            }
+    
+            localStorage.setItem("currentToppingCost", currentToppingCost);
+            updateTotalAmount();
+        }
+    
+        // Update Total Amount
+        function updateTotalAmount() {
+            const totalAmount = currentFlavorCost + currentToppingCost;
+            document.getElementById("total-amount").innerText = `R${totalAmount.toFixed(2)}`;
+        }
+    
+        // Reset Flavor and Topping Selections
+        function resetSelections(popupId) {
+    const defaultImage = document.querySelector(`#${popupId} .ice-cream-cup img`).getAttribute('src');
+    const cup = document.querySelector(`#${popupId} .ice-cream-cup`);
+    cup.innerHTML = `<img src="${defaultImage}" alt="Empty Ice Cream Cup">`;
+
+    document.querySelectorAll(`#${popupId} .topping-btn`).forEach(btn => btn.classList.remove('selected'));
+    document.querySelectorAll(`#${popupId} .topping-btn`).forEach(btn => btn.style.display = 'none');
+
+    currentFlavorCost = 0;  // Reset flavor cost
+    currentToppingCost = 0;  // Reset topping cost
+    updateTotalAmount();
+}
+
+    
+        // Consolidated Add to Cart Function
+        function addToCart(popupId) {
+            if (currentFlavorCost === 0) {
+                alert("Please choose your ice cream flavor first!");
+                return;
+            }
+    
+            const flavorName = document.querySelector(`#ice-cream-popup-${popupId} .flavor-image`).src.split("/").pop().replace("-flavor.png", "");
+    
+            // Store the actual topping names instead of numeric values
+            const toppings = [...document.querySelectorAll(`#ice-cream-popup-${popupId} .topping-image`)]
+                .map(img => {
+                    const toppingId = img.id.split("-")[2]; // Get topping number
+                    const toppingName = toppingNames[`ice-cream-${popupId}`] ? toppingNames[`ice-cream-${popupId}`][`topping${toppingId}`] : `Topping ${toppingId}`;
+                    return toppingName;
+                });
+    
+            const totalPrice = currentFlavorCost + currentToppingCost;
+    
+            // Check if item already exists in the cart
+            const existingItemIndex = cartItems.findIndex(item => item.flavor === flavorName && JSON.stringify(item.toppings) === JSON.stringify(toppings));
+    
+            if (existingItemIndex > -1) {
+                cartItems[existingItemIndex].quantity++;
+            } else {
+                cartItems.push({ flavor: flavorName, toppings, price: totalPrice, quantity: 1 });
+            }
+    
+            cartCount++;
+            updateCartCounter();
+            alert(`Ice cream with flavor ${flavorName} and toppings added to the cart!`);
+            closePopup(`ice-cream-popup-${popupId}`);
+        }
+    
+        // Update Cart Counter
+        function updateCartCounter() {
+            const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById("cart-counter").innerText = totalQuantity;
+        }
+    
+        // Update Quantity
+        function updateQuantity(index, change) {
+            // Update the item's quantity
+            cartItems[index].quantity += change;
+    
+            // Remove item if quantity is zero
+            if (cartItems[index].quantity <= 0) {
+                cartItems.splice(index, 1);
+            }
+    
+            // Recalculate the cart count
+            updateCartCounter();  // Update the cart counter after modifying the quantity
+    
+            // Re-render the cart items
+            renderCartItems();
+        }
+    
+        // Render Cart Items
+        function renderCartItems() {
+            const cartContainer = document.getElementById("cart-items-container");
+            cartContainer.innerHTML = ""; // Clear existing cart items
+            let totalAmount = 0;
+    
+            cartItems.forEach((item, index) => {
+                // Calculate the total for this specific item including quantity
+                const itemTotal = item.price * item.quantity;
+                totalAmount += itemTotal;
+    
+                // Render the toppings as descriptive names
+                const toppingsDisplay = item.toppings.length > 0
+                    ? `Toppings: ${item.toppings.join(", ")}`
+                    : "No Toppings";
+    
+                // Show the price for a single item only
+                const singleItemPrice = item.price.toFixed(2);
+    
+                cartContainer.innerHTML += `
+                    <div class="cart-item">
+                        <p>${item.flavor} - ${toppingsDisplay} - R${singleItemPrice}</p>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity(${index}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateQuantity(${index}, 1)">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+    
+            // Update the overall cart total amount
+            document.getElementById("cart-total-amount").innerText = `R${totalAmount.toFixed(2)}`;
+        }
+    
+    </script>
+    
+<script>
+ const closeAllPopupsButton = document.getElementById('closeAllPopups');
+const overlay = document.getElementById('popupOverlay');
+
+// Show a specific popup
+function showPopup(id) {
+    const popup = document.getElementById(id);
+    popup.classList.add('show');  // Add 'show' class to trigger animation
+    overlay.classList.add('show');  // Show overlay
+    closeAllPopupsButton.style.display = 'inline-block';  // Show Close All button
+}
+
+// Close all popups
+function closeAllPopups() {
+    document.querySelectorAll('.custom-popup').forEach(popup => {
+        popup.classList.remove('show');
+    });
+    overlay.classList.remove('show');
+    closeAllPopupsButton.style.display = 'none';  // Hide Close All button
+}
+
+// Event listeners for opening popups
+document.getElementById('openCandyCupPopup').addEventListener('click', () => {
+    showPopup('popupCandyCup');
+});
+
+document.getElementById('openPopcornPopup').addEventListener('click', () => {
+    showPopup('popupPopcorn');
+});
+
+document.getElementById('openSweetCakePopup').addEventListener('click', () => {
+    showPopup('popupSweetCake');
+});
+
+// document.getElementById('openMilkShakePopup').addEventListener('click', () => {
+  //  showPopup('popupMilkShake');
+// });
+
+// Event listeners for closing popups
+closeAllPopupsButton.addEventListener('click', closeAllPopups);
+overlay.addEventListener('click', closeAllPopups);
+
+ </script>
+
+<script>
+    // Cart data for popup items with no toppings
+    const popupItemCosts = {
+        "popupCandyCup": 5.00,
+        "popupPopcorn": 3.00,
+        "popupSweetCake": 7.00,
+        "popupMilkShake": 6.00
+    };
+    
+    // Event listeners for "Add to Cart" buttons in the popup pages
+    document.querySelector("#popupCandyCup button").addEventListener("click", () => addPopupItemToCart("popupCandyCup"));
+    document.querySelector("#popupPopcorn button").addEventListener("click", () => addPopupItemToCart("popupPopcorn"));
+    document.querySelector("#popupSweetCake button").addEventListener("click", () => addPopupItemToCart("popupSweetCake"));
+    document.querySelector("#popupMilkShake button").addEventListener("click", () => addPopupItemToCart("popupMilkShake"));
+    
+    // Function to add an ice cream item to the cart
+    function addIceCreamToCart(flavor, toppings, price) {
+        const existingItemIndex = cartItems.findIndex(item => item.flavor === flavor && item.toppings.toString() === toppings.toString());
+    
+        if (existingItemIndex > -1) {
+            cartItems[existingItemIndex].quantity++;
+        } else {
+            cartItems.push({ flavor, toppings, price, quantity: 1 });
+        }
+    
+        cartCount++;
+        updateCartCounter();
+        alert(`${flavor} added to cart!`);
+        renderCartItems();
+        updateTotalAmount(); // Ensure total amount is updated when adding an ice cream
+    }
+    
+    // Function to add a popup item to the cart
+    function addPopupItemToCart(popupId) {
+        const itemName = document.querySelector(`#${popupId} h3`).innerText;
+        const itemCost = popupItemCosts[popupId];
+    
+        // Add the popup item to the cart with no toppings
+        const existingItemIndex = cartItems.findIndex(item => item.flavor === itemName);
+    
+        if (existingItemIndex > -1) {
+            cartItems[existingItemIndex].quantity++;
+        } else {
+            cartItems.push({ flavor: itemName, toppings: [], price: itemCost, quantity: 1 });
+        }
+    
+        cartCount++;
+        updateCartCounter();
+        alert(`${itemName} added to cart!`);
+        renderCartItems();
+        updateTotalAmount(); // Ensure total amount is updated when adding a popup item
+    }
+    
+    // Update cart counter
+    function updateCartCounter() {
+        const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById("cart-counter").innerText = totalQuantity;
+    }
+    
+    // Update total amount in the cart modal
+    function updateTotalAmount() {
+        const totalAmount = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+        document.getElementById("total-amount").innerText = `R${totalAmount.toFixed(2)}`;
+    }
+    
+    // Render Cart Items
+    function renderCartItems() {
+        const cartContainer = document.getElementById("cart-items-container");
+        cartContainer.innerHTML = ""; // Clear existing cart items
+        let totalAmount = 0;
+    
+        cartItems.forEach((item, index) => {
+            const itemTotal = item.price * item.quantity;
+            totalAmount += itemTotal;
+    
+            // Render item details: display toppings only if available
+            let itemDetails = `${item.flavor} - R${item.price.toFixed(2)}`;
+            if (item.toppings.length > 0) {
+                itemDetails += ` - Toppings: ${item.toppings.join(", ")}`;
+            }
+    
+            cartContainer.innerHTML += `
+                <div class="cart-item">
+                    <p>${itemDetails}</p>
+                    <div class="quantity-controls">
+                        <button onclick="updateQuantity(${index}, -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="updateQuantity(${index}, 1)">+</button>
+                    </div>
+                </div>
+            `;
+        });
+    
+        document.getElementById("cart-total-amount").innerText = `R${totalAmount.toFixed(2)}`;
+    }
+    
+    // Update quantity
+    function updateQuantity(index, change) {
+        cartItems[index].quantity += change;
+    
+        // Remove item if quantity is zero
+        if (cartItems[index].quantity <= 0) {
+            cartItems.splice(index, 1);
+        }
+    
+        // Recalculate the cart count and render the cart
+        updateCartCounter();
+        renderCartItems();
+        updateTotalAmount(); // Ensure the total amount is updated when quantity changes
+    }
+    </script>
+    
+</body>
+</html>

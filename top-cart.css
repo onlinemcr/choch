@@ -1,0 +1,72 @@
+/* Position and style the cart icon */
+#cart-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Parent container for positioning */
+#cart-button {
+    display: flex;
+    align-items: center;
+    background-color: #f1f1f1;
+    border: none;
+    padding: 8px 12px; /* Moderately reduced padding */
+    border-radius: 60px; /* Slightly smaller border radius */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Balanced shadow */
+    cursor: pointer;
+    position: relative;
+}
+
+/* Icon container to group cart image and counter */
+#cart-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Shopping cart image styling */
+#cart-icon-container img {
+    width: 28px; /* Slightly smaller than the original */
+    height: auto;
+}
+
+/* Cart counter styling and positioning */
+#cart-counter {
+    position: absolute;
+    top: -5px; /* Adjusted positioning */
+    right: -8px; /* Adjusted positioning */
+    background-color: #ff4d4d;
+    color: white;
+    font-weight: bold;
+    padding: 3px 7px; /* Slightly reduced padding */
+    border-radius: 100%;
+    font-size: 12px; /* Balanced font size */
+}
+
+/* Total amount styling */
+#total-amount {
+    color: #333;
+    font-weight: bold;
+    font-size: 15px; /* Slightly smaller font size */
+    margin-left: 6px; /* Reduced spacing */
+}
+
+
+/* Media Query for Tablets (768px and below) */
+@media (max-width: 768px) {
+    #cart-container {
+        top: 35px; /* Adjust position slightly for tablets */
+        right: 100px; /* Bring it closer to the screen's edge */
+        z-index: 10;
+    }
+}
+
+/* Media Query for Mobile Devices (480px and below) */
+@media (max-width: 480px) {
+    #cart-container {
+        top: 34px; /* Closer to the top for compact screens */
+        right: 100px; /* Ensure it stays fully visible on mobile */
+        z-index: 10;
+    }
+}

@@ -1,0 +1,327 @@
+/* Base Styling for Cart Modal */
+.cart-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9); /* Slightly scaled down initially */
+    width: 90%;
+    max-width: 400px;
+    background: linear-gradient(135deg, #f9f9f9, #ffffff); /* Subtle gradient */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Elevation effect */
+    padding: 20px;
+    border-radius: 15px; /* Softer corners */
+    z-index: 9999;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden; /* Fully invisible */
+    transition: all 0.4s ease; /* Smooth entrance */
+}
+
+.cart-modal.show {
+    display: block; /* Visible when active */
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1); /* Full scale when visible */
+}
+
+/* Close Button */
+.close-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 90px;
+    border: 1px solid #ddd;
+    background: white;
+    color: #555;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    position: relative; /* Positioned in button container */
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.close-btn:hover {
+    background: #f8d7da; /* Subtle red hover effect */
+    transform: scale(1.1); /* Slight enlargement */
+    color: #e74c3c;
+}
+
+/* Modal Header */
+.cart-modal h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Cart Items Container */
+#cart-items-container {
+    max-height: 250px; /* Increased height for complex content */
+    overflow-y: auto; /* Enable scrolling for long content */
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #f9f9f9; /* Light background for contrast */
+    border-radius: 10px;
+    border: 1px solid #ddd; /* Subtle border for definition */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+}
+
+#cart-items-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+#cart-items-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #ddd, #bbb); /* Gradient scrollbar */
+    border-radius: 3px;
+}
+
+#cart-items-container .cart-item {
+    display: flex;
+    flex-wrap: wrap; /* Allows line breaks for long content */
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee; /* Divider between items */
+}
+
+#cart-items-container .cart-item:last-child {
+    border-bottom: none; /* Remove border for the last item */
+}
+#cart-items-container .cart-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px; /* Rounded corners for images */
+    margin-right: 10px; /* Spacing next to images */
+}
+
+#cart-items-container .cart-item-details {
+    flex-grow: 1;
+    margin-left: 10px;
+    text-align: left;
+}
+
+#cart-items-container .cart-item-details h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+#cart-items-container .cart-item-details p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Flavor and Toppings */
+#cart-items-container .cart-item .flavors,
+#cart-items-container .cart-item .toppings {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #444;
+}
+
+#cart-items-container .cart-item .flavors span,
+#cart-items-container .cart-item .toppings span {
+    display: inline-block;
+    margin-right: 5px;
+    background: #e8f5e9; /* Light green for flavor tags */
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #28a745;
+}
+
+#cart-items-container .cart-item .toppings span {
+    background: #f0f0f0; /* Light grey for topping tags */
+    color: #555;
+}
+
+#cart-items-container .cart-item-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #28a745;
+    margin-left: auto; /* Align price to the right */
+}
+
+/* Cart Total */
+.cart-total {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+    padding: 10px;
+    background: #f4f4f4;
+    border-radius: 10px;
+}
+
+/* Buttons Section */
+.cart-modal .buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.proceed-btn {
+    background: linear-gradient(135deg, #28a745, #34d058); /* Gradient button */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    cursor: pointer;
+    border-radius: 25px; /* Pill shape */
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+    flex-grow: 1; /* Make it occupy remaining space */
+    margin-right: 10px; /* Space to the right */
+}
+
+.proceed-btn:hover {
+    background: #218838; /* Slightly darker green */
+    transform: scale(1.05); /* Pop-out effect */
+}
+
+.google-login-btn {
+    width: 40px;
+    height: 40px;
+    background: url('images/google-icon.png') no-repeat center/contain; /* Replace with your Google icon path */
+    border-radius: 90px;
+    border: 3px solid #000000;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.google-login-btn:hover {
+    transform: scale(1.1); /* Slight enlargement */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Quantity Controls Styling */
+.cart-item .quantity-controls {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Align to the right */
+}
+
+.cart-item .quantity-controls button {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    color: #333;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.cart-item .quantity-controls button:hover {
+    background: #e0e0e0; /* Slightly darker on hover */
+}
+
+.cart-item .quantity-controls span {
+    display: inline-block;
+    margin: 0 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #444;
+}
+
+
+/* Modal Footer */
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+}
+
+/* Close Button in Footer */
+.close-btn-footer {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.close-btn-footer:hover {
+    background: #c0392b; /* Darker red */
+    transform: scale(1.1); /* Slight pop effect */
+}
+
+/* Proceed to Checkout Button */
+.proceed-btn {
+    background: linear-gradient(135deg, #28a745, #34d058);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px; /* Pill shape */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.proceed-btn:hover {
+    background: #218838; /* Slightly darker green */
+    transform: scale(1.05);
+}
+
+/* Google Login Button */
+.google-login-btn {
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.google-login-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+.google-login-btn:hover {
+    background: #f0f0f0; /* Subtle hover effect */
+}
+
+/* Page Overlay */
+#page-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent black */
+    backdrop-filter: blur(8px); /* Apply blur effect */
+    z-index: 9998; /* Just below the modal */
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Show Overlay */
+#page-overlay.show {
+    display: block;
+    opacity: 1;
+}

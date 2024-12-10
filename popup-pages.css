@@ -1,0 +1,326 @@
+/* Overlay Styling */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.116); /* Semi-transparent black */
+    z-index: 999; /* Below popups */
+    display: none; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* When overlay is visible */
+.overlay.visible {
+    display: block;
+    opacity: 1;
+}
+
+/* Popup Container */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 80%;
+    background: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    z-index: 9999; /* Above overlay */
+    display: none; /* Hidden by default */
+    overflow: hidden;
+    animation: popupFadeIn 0.5s ease;
+}
+
+@keyframes popupFadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* Close Button */
+.popup .close-btn {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    z-index: 9999;
+}
+
+.popup .close-btn:hover {
+    background: #ff1a1a;
+}
+
+/* Ice Cream Cup Container */
+.ice-cream-cup {
+    position: relative;
+    width: 400px; /* Larger size */
+    height: 400px; /* Larger size */
+    margin: 20px auto;
+    display: block;
+    text-align: center;
+}
+
+.ice-cream-cup img {
+    width: 100%; /* Full width for responsiveness */
+    height: 100%; /* Ensure it fills the container */
+    object-fit: contain; /* Prevent stretching */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Flavor Images */
+.flavor-image {
+    position: absolute;
+    top: -1%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; /* Same width as the ice cream cup */
+    z-index: 2; /* Above the cup */
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Topping Images */
+.topping-image {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; /* Same width as the flavor image */
+    z-index: 3; /* Above the flavor image */
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Flavor and Topping Buttons */
+.flavors,
+.toppings {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    position: relative;
+    z-index: 4;
+    overflow-x: auto; /* Allows horizontal scroll */
+    padding-bottom: 10px; /* Ensure there's padding for scrolling */
+}
+
+/* Make topping buttons scrollable */
+.toppings {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center;
+    overflow-y: auto; /* Allows vertical scrolling if too many buttons */
+    max-height: 200px; /* Reduced height to fit the Add to Cart button */
+    margin-top: 10px;
+    gap: 10px;
+}
+
+/* Hiding toppings buttons as default */
+.topping-btn {
+    display: none; /* Hide toppings by default */
+}
+
+.flavor-btn,
+.topping-btn {
+    background: #e9ecef;
+    color: #333;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.flavor-btn:hover,
+.topping-btn:hover {
+    background: #d60059;
+    transform: scale(1.1);
+    color: white;
+}
+
+.flavor-btn.selected {
+    background: #d60059;
+    color: white;
+}
+
+.topping-btn.selected {
+    background: #d60059;
+    color: white;
+}
+
+/* Add to Cart Button */
+.add-to-cart-btn {
+    background: #28a745;
+    color: white;
+    font-size: 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px; /* Space between the button and the flavor/topping buttons */
+    cursor: pointer;
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background: #218838;
+}
+
+/* Popup Animations */
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Responsive Adjustments for Laptop Screens */
+@media (min-width: 992px) and (max-width: 1366px) { /* Laptops only */
+    .popup {
+        width: 80%;
+        height: 85%; /* Increased height to make better use of available space */
+        overflow-y: auto; /* Ensure content is scrollable if it exceeds the popup height */
+        padding: 10px; /* Add padding to ensure content doesn't touch edges */
+    }
+
+    .ice-cream-cup {
+        width: 350px; /* Reduced size for better layout */
+        height: 350px;
+        margin: 0 auto; /* Center the cup */
+    }
+
+    .flavors,
+    .toppings {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        overflow-y: auto; /* Enable vertical scrolling for long lists */
+        max-height: 150px; /* Limit height to ensure buttons fit */
+    }
+
+    .add-to-cart-btn {
+        font-size: 16px;
+        margin-top: 15px; /* Adjusted spacing above the button */
+        position: relative; /* Ensure proper placement within the popup */
+        bottom: 0; /* Stick it closer to the bottom */
+    }
+
+    /* Ensure that nothing overflows the popup */
+    .popup {
+        max-height: 90vh; /* Prevent the popup from exceeding the screen height */
+        overflow-y: auto; /* Allow scrolling for overflow content */
+    }
+}
+
+/* Additional adjustment for mobile screens */
+@media (max-width: 768px) {
+    .popup {
+        width: 90%;
+        height: 90%;
+        overflow-y: auto;
+    }
+
+    .add-to-cart-btn {
+        font-size: 14px;
+        padding: 10px 15px;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .popup {
+        width: 95%;
+        height: 85%;
+    }
+
+    .ice-cream-cup {
+        width: 400px; /* Slightly smaller for tablet */
+        height: 400px;
+    }
+
+    .flavors,
+    .toppings {
+        flex-direction: column; /* Stack the buttons vertically */
+        margin-top: 10px; /* Reduce the space between buttons */
+        overflow-y: auto; /* Make it scrollable if there are many buttons */
+    }
+
+    .add-to-cart-btn {
+        font-size: 14px;
+        margin-top: 20px; /* Make sure the Add to Cart button stays below the toppings */
+    }
+
+    /* Fix the topping buttons container to prevent them from overlapping the Add to Cart button */
+    .toppings {
+        max-height: 200px; /* Ensure space for the Add to Cart button */
+    }
+}
+
+@media (max-width: 480px) {
+    .popup {
+        width: 90%;
+        height: 90%;
+    }
+
+    .ice-cream-cup {
+        width: 300px; /* Slightly smaller for mobile */
+        height: 300px;
+    }
+
+    .flavors,
+    .toppings {
+        flex-direction: column; /* Stack the buttons vertically */
+        margin-top: 10px; /* Reduce the space between buttons */
+        overflow-y: auto; /* Make it scrollable if there are too many buttons */
+        max-height: 50%; /* Limit the height to allow space for Add to Cart button */
+    }
+
+    /* Adjust max-height of the toppings container */
+    .toppings {
+        max-height: 150px; /* Allow space for Add to Cart button */
+    }
+
+    .flavor-btn,
+    .topping-btn {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .add-to-cart-btn {
+        font-size: 12px;
+        padding: 10px 15px;
+        margin-top: 10px; /* Ensure the button is spaced from the toppings */
+    }
+}

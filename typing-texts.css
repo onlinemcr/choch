@@ -1,0 +1,57 @@
+/* Load Pacifico-Regular Font */
+@font-face {
+    font-family: 'Pacifico';
+    src: url('fonts/Pacifico-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Typing Text Container */
+#typing-text-container {
+    position: absolute;
+    top: 160px;
+    left: 90px;
+    font-size: 24px;
+    font-weight: normal;
+    color: white;
+    font-family: 'Pacifico', sans-serif; /* Apply Pacifico font */
+    z-index: 1000;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* Blinking Cursor */
+#typing-text::after {
+    content: '|';
+    animation: blink 1s infinite;
+}
+
+/* Blink Animation */
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+
+/* Media Query for Tablets (768px and below) */
+@media (max-width: 768px) {
+    #typing-text-container {
+        top: 310px; /* Adjust positioning for tablets */
+        left: 45px; /* Adjust positioning for tablets */
+        font-size: 25px; /* Smaller font size for tablets */
+    }
+}
+
+/* Media Query for Mobile Devices (480px and below) */
+@media (max-width: 480px) {
+    #typing-text-container {
+        top: 230px; /* Adjust positioning for mobile */
+        left: 30px; /* Adjust positioning for mobile */
+        font-size: 20px; /* Even smaller font size for mobile */
+        text-align: center; /* Center-align text for smaller screens */
+    }
+}

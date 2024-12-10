@@ -1,0 +1,74 @@
+/* Create a container for the buttons to be vertically stacked */
+.button-container {
+    display: none; /* Hide the button container by default */
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    z-index: 10;
+}
+
+
+/* Style the image buttons */
+.trigger-button {
+    background: none;
+    border: none;
+    padding: 10px;
+    margin: 1px 0; /* Space between buttons */
+    cursor: pointer;
+}
+
+.trigger-button img {
+    width: 60px; /* Set a consistent size for images */
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+/* Media Queries */
+
+/* Tablet screen */
+@media screen and (max-width: 768px) {
+    .button-container {
+        flex-direction: row; /* Align buttons horizontally */
+        top: 75%; /* Position the buttons above the swiper */
+        left: 51.7%; /* Center the buttons horizontally */
+        transform: translateX(-50%); /* Adjust to center horizontally */
+    }
+
+    .trigger-button img {
+        width: 60px; /* Adjust for tablet size */
+    }
+}
+
+/* Mobile screen */
+@media screen and (max-width: 480px) {
+    .button-container {
+        flex-direction: column; /* Keep buttons stacked vertically */
+        top: 58%; /* Center the buttons vertically */
+        transform: translateY(-50%); /* Adjust to perfectly align vertically */
+        right: 20px; /* Align the buttons to the right */
+    }
+
+    .trigger-button img {
+        width: 60px; /* Adjust for mobile size */
+        background-color: rgb(226, 0, 75);
+    }
+}
+
+/* Desktop screen */
+@media screen and (min-width: 1025px) {
+    .button-container {
+        top: 59.1%; /* Center the buttons vertically */
+        transform: translateY(-50%); /* Adjust to perfectly align vertically */
+        right: 190px; /* Align the buttons to the right */
+    }
+
+    .trigger-button img {
+        width: 80px; /* Keep the original size for desktop */
+        background-color: rgb(226, 0, 75);
+    }
+}
