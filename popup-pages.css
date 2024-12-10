@@ -270,7 +270,12 @@
         height: 400px;
     }
 
-    .flavors,
+    .flavors {
+        flex-direction: column; /* Stack the buttons vertically */
+        margin-top: -20px; /* Reduce the space between buttons */
+        overflow-y: auto; /* Make it scrollable if there are many buttons */
+    }
+
     .toppings {
         flex-direction: column; /* Stack the buttons vertically */
         margin-top: 10px; /* Reduce the space between buttons */
@@ -284,7 +289,7 @@
 
     /* Fix the topping buttons container to prevent them from overlapping the Add to Cart button */
     .toppings {
-        max-height: 200px; /* Ensure space for the Add to Cart button */
+        max-height: 180px; /* Ensure space for the Add to Cart button */
     }
 }
 
@@ -299,7 +304,13 @@
         height: 300px;
     }
 
-    .flavors,
+    .flavors {
+        flex-direction: column; /* Stack the buttons vertically */
+        margin-top: -20px; /* Reduce the space between buttons */
+        overflow-y: auto; /* Make it scrollable if there are too many buttons */
+        max-height: 50%; /* Limit the height to allow space for Add to Cart button */
+    }
+
     .toppings {
         flex-direction: column; /* Stack the buttons vertically */
         margin-top: 10px; /* Reduce the space between buttons */
@@ -309,7 +320,7 @@
 
     /* Adjust max-height of the toppings container */
     .toppings {
-        max-height: 150px; /* Allow space for Add to Cart button */
+        max-height: 130px; /* Allow space for Add to Cart button */
     }
 
     .flavor-btn,

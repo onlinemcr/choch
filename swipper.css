@@ -57,7 +57,7 @@
         width: 90%; /* Adjust width for tablets */
         height: 300px; /* Adjust height for tablets */
         margin-right: 0px; /* Removed margin-right */
-        margin-top: 140px;
+        margin-top: -40px;
     }
 
     .swiper-slide {
@@ -74,6 +74,7 @@
         justify-content: center;
         margin-right: 0px; /* Removed margin-right */
         scale: 110%;
+        margin-top: 50px;
     }
 
     .swiper-slide {
@@ -92,8 +93,9 @@
     }
 
     .swiper-slide img {
-        width: 100%; /* Make sure images fill the width */
-        height: 100%; /* Make sure images fill the height */
+        width: 90%; /* Make sure images fill the width */
+        height: 90%; /* Make sure images fill the height */
+        border-radius: 40px;
     }
 
     .swiper-slide .label {

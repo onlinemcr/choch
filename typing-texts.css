@@ -40,7 +40,7 @@
 /* Media Query for Tablets (768px and below) */
 @media (max-width: 768px) {
     #typing-text-container {
-        top: 310px; /* Adjust positioning for tablets */
+        top: 200px; /* Adjust positioning for tablets */
         left: 45px; /* Adjust positioning for tablets */
         font-size: 25px; /* Smaller font size for tablets */
     }
@@ -49,9 +49,9 @@
 /* Media Query for Mobile Devices (480px and below) */
 @media (max-width: 480px) {
     #typing-text-container {
-        top: 230px; /* Adjust positioning for mobile */
+        top: 130px; /* Adjust positioning for mobile */
         left: 30px; /* Adjust positioning for mobile */
-        font-size: 20px; /* Even smaller font size for mobile */
+        font-size: 16px; /* Even smaller font size for mobile */
         text-align: center; /* Center-align text for smaller screens */
     }
 }
